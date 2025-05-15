@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('birth_date')->nullable();
             $table->string('passport_number')->nullable();
             $table->string('passport_expire_date')->nullable();
-            $table->string('mobile_number')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('wallet_balance')->default(0);
+            $table->string('phone')->nullable();
+            $table->string('mobile')->nullable();
             $table->timestamps();
         });
     }

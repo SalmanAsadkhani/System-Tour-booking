@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminPanel\Admin\AdminController;
 use App\Http\Controllers\AdminPanel\TourController\AdminTourController;
-use App\Http\Controllers\auth\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,23 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('send-otp' , [AuthController::class , 'sendOtp']);
-Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
-Route::post('/resend-otp', [AuthController::class, 'resendOtp']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('store' , [AdminController::class , 'store']);
+Route::post('login',[AdminController::class,'login']);
 
-
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::put('/set-password', [AuthController::class, 'setPassword']);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/admin/tours', [AdminController::class, 'store']);
+    Route::put('/admin/tours/{id}', [AdminController::class, 'update']);
+    Route::delete('/admin/tours/{id}', [AdminController::class, 'destroy']);
 });
-
-
-
-
-
-
-
 
 
 

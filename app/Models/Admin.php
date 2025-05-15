@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Otp extends Model
+class Admin extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'phone_number',
-        'otp',
-        'expires_at',
+        'name',
+        'mobile',
+        'password',
+        'national_code',
+        'birth_date',
     ];
 }
