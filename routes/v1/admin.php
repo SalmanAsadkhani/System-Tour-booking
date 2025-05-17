@@ -18,14 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('store' , [AdminController::class , 'store']);
-Route::post('login',[AdminController::class,'login']);
+Route::post('/register' , [AdminController::class , 'register']);
+Route::post('/login',[AdminController::class,'login']);
 
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/admin/tours', [AdminController::class, 'store']);
-    Route::put('/admin/tours/{id}', [AdminController::class, 'update']);
-    Route::delete('/admin/tours/{id}', [AdminController::class, 'destroy']);
+Route::get('tst' , function (){
+   dd('fdfdffddf');
 });
+
+ //Tours
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('/tours', [AdminController::class, 'storeTours']);
+    Route::put('/tours/{id}', [AdminController::class, 'updateTours']);
+    Route::delete('/tours/{id}', [AdminController::class, 'destroyTours']);
+});
+
 
 
 

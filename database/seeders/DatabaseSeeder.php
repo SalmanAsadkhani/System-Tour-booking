@@ -3,20 +3,26 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Admin;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
-    public function run(): void
-    {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        public function run()
+    {
+//        $permission = Permission::where('title_en', 'manage_tours')->first();
+//
+//        $adminRole = Role::where(['title_en' => 'admin'])->first();
+//
+//
+//        $adminRole->givePermissionTo($permission);
+//
+//        $admin = Admin::all()->find(1)->first();
+//        $admin->assignRole('admin');
+
     }
+
 }

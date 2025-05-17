@@ -13,17 +13,37 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+
+            // اطلاعات عمومی تور
             $table->string('title');
-            $table->string('location');
             $table->string('slug')->unique();
-            $table->string('price');
-            $table->string('start_date');
-            $table->string('end_date');
-            $table->Text('description')->nullable();
-            $table->integer('capacity');
-            $table->string('image_url')->nullable();
+            $table->text('description')->nullable();
+
+            // زمان‌بندی
+            $table->dateTime('start_date');  // تاریخ حرکت (دقیق‌تر از string)
+            $table->dateTime('end_date');    // تاریخ برگشت
+
+            // قیمت و ظرفیت
+            $table->unsignedBigInteger('price_per_person'); // عددی و قابل محاسبه
+            $table->string('currency')->default('تومان');
+            $table->unsignedInteger('capacity');
+
+            // جزئیات سفر
+            $table->unsignedInteger('duration_days');   // تعداد روزها
+            $table->unsignedInteger('duration_nights'); // تعداد شب‌ها
+            $table->string('departure_location');        // محل حرکت (مثلاً فرودگاه امام)
+            $table->enum('transportation_type', ['air', 'bus', 'train'])->default('air');// وسیله نقلیه (مثلاً هواپیما)
+            $table->text('hotel_info')->nullable();      // مشخصات هتل
+            $table->unsignedTinyInteger('food_count')->default(0);  // تعداد وعده‌های غذایی
+            $table->string('difficulty_level')->default(1); // مثلاً: آسان، متوسط، سخت
+
+            // تصویر و وضعیت
+            $table->string('image')->nullable();
+            $table->boolean('is_active')->default(true);
+
             $table->timestamps();
         });
+
     }
 
     /**

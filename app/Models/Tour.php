@@ -9,15 +9,32 @@ class Tour extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'title',
-        'location',
         'slug',
-        'price',
+        'description',
         'start_date',
         'end_date',
-        'description',
+        'price_per_person',
+        'currency',
         'capacity',
-        'image_url',
+        'duration_days',
+        'duration_nights',
+        'departure_location',
+        'transportation_type',
+        'hotel_info',
+        'food_count',
+        'difficulty_level',
+        'image',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+        'is_active' => 'boolean',
+        'food_count' => 'integer',
+        'difficulty_level' => 'integer',
     ];
 }
