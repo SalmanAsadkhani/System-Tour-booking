@@ -27,9 +27,10 @@ Route::get('tst' , function (){
 
  //Tours
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/tours', [AdminController::class, 'showTours']);
     Route::post('/tours', [AdminController::class, 'storeTours']);
-    Route::put('/tours/{id}', [AdminController::class, 'updateTours']);
-    Route::delete('/tours/{id}', [AdminController::class, 'destroyTours']);
+    Route::put('/tours/{tour}', [AdminController::class, 'updateTours']);
+    Route::delete('/tours/{tour}', [AdminController::class, 'destroyTours']);
 });
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class StoreTourRequest extends FormRequest
@@ -26,7 +27,7 @@ class StoreTourRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:tours,slug',
+            'slug' => 'required|string|max:255|unique:tours,slug| alpha_dash',
             'description' => 'nullable|string',
 
             // زمان‌بندی
@@ -70,6 +71,14 @@ class StoreTourRequest extends FormRequest
                 }
             }
         });
+    }
+
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->slug),
+        ]);
     }
 
 }
